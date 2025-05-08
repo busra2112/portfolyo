@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Büşra Tengiz - Portfolyo</title>
+    <style>
+        /* Genel Stiller */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary-color: #9370DB; /* Eflatun tonu */
+            --primary-light: #B19CD9;
+            --primary-dark: #7B68EE;
+            --white: #ffffff;
+            --light-bg: #f8f8ff;
+            --text-dark: #333;
+        }
+        
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 60px 0;
+        }
+        
+        h1, h2, h3 {
+            color: var(--primary-dark);
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--primary-dark);
+            transition: all 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--primary-light);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .btn:hover {
+            background: var(--primary-dark);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(147, 112, 219, 0.4);
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--primary-color);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--white);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--white);
+            font-weight: 600;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--white);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-color) 100%);
+            color: var(--white);
+            padding-top: 80px;
+        }
+        
+        .hero-content {
+            max-width: 600px;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .hero-btn {
+            background-color: var(--white);
+            color: var(--primary-color);
+        }
+        
+        .hero-btn:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+            color: var(--primary-dark);
+        }
+        
+        /* Hakkımda Section */
+        .about {
+            background-color: var(--white);
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .about-image {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .about-image img {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--primary-light);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .about p {
+            margin-bottom: 15px;
+        }
+        
+        /* Yetenekler Section */
+        .skills {
+            background-color: var(--light-bg);
+        }
+        
+        .skills h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 40px;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .skill-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .skill-card h3 {
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        
+        .skill-card p {
+            color: #666;
+        }
+        
+        /* Projeler Section */
+        .projects {
+            background-color: var(--white);
+        }
+        
+        .projects h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 40px;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .project-card {
+            background-color: var(--light-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .project-img {
+            height: 200px;
+            background-color: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .project-img span {
+            font-size: 48px;
+            color: var(--white);
+        }
+        
+        .project-info {
+            padding: 20px;
+        }
+        
+        .project-info h3 {
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+        
+        .project-info p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .project-link {
+            display: inline-block;
+            font-weight: 600;
+        }
+        
+        /* İletişim Section */
+        .contact {
+            background-color: var(--light-bg);
+        }
+        
+        .contact h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 40px;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        .form-group input, 
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .contact-info {
+            margin-top: 40px;
+            text-align: center;
+        }
+        
+        .contact-info p {
+            margin-bottom: 10px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 20px 0;
+        }
+        
+        footer p {
+            margin-bottom: 10px;
+        }
+        
+        /* Responsive Tasarım */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-image, .about-text {
+                flex: auto;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">BT</div>
+                <ul class="nav-links">
+                    <li><a href="#hero">Ana Sayfa</a></li>
+                    <li><a href="#about">Hakkımda</a></li>
+                    <li><a href="#skills">Yetenekler</a></li>
+                    <li><a href="#projects">Projeler</a></li>
+                    <li><a href="#contact">İletişim</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Merhaba, Ben Büşra Tengiz</h1>
+                <p>Yönetim Bilişim Sistemleri öğrencisi ve teknoloji tutkunuyum.</p>
+                <a href="#contact" class="btn hero-btn">İletişime Geç</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hakkımda Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="/api/placeholder/400/400" alt="Büşra Tengiz">
+                </div>
+                <div class="about-text">
+                    <h2>Hakkımda</h2>
+                    <p>Merhaba! Ben Büşra Tengiz, Yönetim Bilişim Sistemleri öğrencisiyim. Teknoloji ve iş süreçlerinin kesişim noktasında çalışmayı seviyorum.</p>
+                    <p>Veri analizi, kullanıcı deneyimi tasarımı ve web geliştirme konularında kendimi sürekli geliştirmekteyim. Teknolojinin iş dünyasına entegrasyonu süreçlerinde yaratıcı çözümler üretmekten keyif alıyorum.</p>
+                    <p>Ekip çalışmasına yatkın, analitik düşünce yapısına sahip ve yeni teknolojileri öğrenmeye her zaman açık biriyim.</p>
+                    <a href="#contact" class="btn">Özgeçmişimi İndir</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Yetenekler Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2>Yeteneklerim</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>Web Geliştirme</h3>
+                    <p>HTML, CSS ve JavaScript ile modern ve responsive web siteleri geliştiriyorum.</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Veri Analizi</h3>
+                    <p>Excel, SQL ve veri görselleştirme araçları ile veri analizi yapabilirim.</p>
+                </div>
+                <div class="skill-card">
+                    <h3>İş Süreçleri</h3>
+                    <p>İş süreçlerini analiz edip, iyileştirme önerileri sunabiliyorum.</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Proje Yönetimi</h3>
+                    <p>Agile metodolojileri kullanarak projeleri planlayıp yönetebiliyorum.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projeler Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2>Projelerim</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-img">
+                        <span>📊</span>
+                    </div>
+                    <div class="project-info">
+                        <h3>Satış Veri Analizi</h3>
+                        <p>Bir e-ticaret şirketinin satış verilerinin analizi ve raporlanması.</p>
+                        <a href="#" class="project-link">Detaylar →</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">
+                        <span>💻</span>
+                    </div>
+                    <div class="project-info">
+                        <h3>Öğrenci Portalı</h3>
+                        <p>Öğrencilerin ders seçimi yapabileceği ve notlarını görebileceği web uygulaması.</p>
+                        <a href="#" class="project-link">Detaylar →</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">
+                        <span>🔍</span>
+                    </div>
+                    <div class="project-info">
+                        <h3>Müşteri Segmentasyonu</h3>
+                        <p>Müşteri davranışlarına göre segmentasyon analizi projesi.</p>
+                        <a href="#" class="project-link">Detaylar →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- İletişim Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>İletişim</h2>
+            <div class="contact-form">
+                <form>
+                    <div class="form-group">
+                        <label for="name">Ad Soyad</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-posta</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Telefon</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Mesaj</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Gönder</button>
+                </form>
+            </div>
+            <div class="contact-info">
+                <p>E-posta: busra.tengiz@email.com</p>
+                <p>Telefon: +90 555 123 4567</p>
+                <div class="social-links">
+                    <a href="https://github.com/2112" target="_blank">GH</a>
+                    <a href="#" target="_blank">LI</a>
+                    <a href="#" target="_blank">TW</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Büşra Tengiz. Tüm hakları saklıdır.</p>
+            <p>GitHub: <a href="https://github.com/2112" target="_blank">github.com/2112</a></p>
+        </div>
+    </footer>
+</body>
+</html>
